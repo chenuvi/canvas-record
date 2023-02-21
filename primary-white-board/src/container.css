@@ -1,0 +1,56 @@
+﻿canvas {
+  box-shadow: -3px 2px 9px 6px black;
+  cursor: pointer;
+}
+
+.tools {
+  /* border: 10px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 15px;
+}
+
+.tools .color-field {
+  height: 40px;
+  width: 40px;
+  min-height: 40px;
+  min-width: 40px;
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.tools .button {
+  height: 40px;
+  min-height: 40px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #eee;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  margin: 0 15px;
+}
+.tools .button:hover {
+  border-color: #646cff;
+}
+.tools .button:focus,
+.button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.color-picker {
+  height: 50px;
+  margin: 0 15px;
+}
+
+.pen-range {
+  margin: 0 15px;
+}
