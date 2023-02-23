@@ -1,7 +1,7 @@
 import "./style.css";
 // canvas 工具样式
 import "./container.css";
-import { setupCounter } from "./counter";
+import { canvasEvent } from "./canvas";
 
 document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <div class="container">
@@ -24,4 +24,4 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   </div>
 `;
 
-setupCounter(document.querySelector<HTMLButtonElement>("#counter")!);
+canvasEvent(document.querySelector<HTMLCanvasElement>("#canvas")!);
