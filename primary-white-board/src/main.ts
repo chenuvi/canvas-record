@@ -8,7 +8,7 @@ document.querySelector<HTMLDivElement>("#app")!.innerHTML = `
   <canvas id="canvas"></canvas>
   <div class="tools">
     <button type="button" class="button">Undo</button>
-    <button type="button" class="button">Clear</button>
+    <button type="button" class="button" onClick="clear()">Clear</button>
 
     <div class="colors">
       <div class="color-field" style="background-color: black"></div>

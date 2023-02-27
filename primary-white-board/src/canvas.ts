@@ -1,15 +1,16 @@
+// init Vars
+let initBgColor = "white";
+let drawWidth = 2;
+let drawColor = "red";
+let isDrawing = false;
 export function canvasEvent(canvas: HTMLCanvasElement) {
+  // init Setting
   canvas.width = window.innerWidth - 60;
   canvas.height = 400;
   const ctx = canvas.getContext("2d")!;
-  ctx.fillStyle = "white";
+  ctx.fillStyle = initBgColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  let drawColor = "black";
-  let drawWidth = 2;
-  let isDrawing = false;
-
-  canvas.addEventListener("touchstart", start, false);
   canvas.addEventListener("touchmove", draw, false);
   canvas.addEventListener("touchend", stop, false);
 
@@ -47,5 +48,12 @@ export function canvasEvent(canvas: HTMLCanvasElement) {
       ctx.closePath();
       isDrawing = false;
     }
+  }
+
+  function clear() {
+    console.log("clear");
+    ctx.fillStyle = initBgColor;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
 }
