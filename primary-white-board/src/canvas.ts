@@ -3,7 +3,7 @@ let initBgColor = "white";
 let drawWidth = 2;
 let drawColor = "black";
 let isDrawing = false;
-let restoreArray = [];
+let restoreArray: ImageData[] = [];
 let index = -1;
 
 const $ = document.querySelector.bind(document);
@@ -76,11 +76,16 @@ function canvasEvent(canvas: HTMLCanvasElement) {
     }
   }
 
-  function stop() {
+  function stop(e: MouseEvent | TouchEvent) {
     if (isDrawing) {
       ctx.stroke();
       ctx.closePath();
       isDrawing = false;
+    }
+    e.preventDefault();
+    if (e.type !== "mouseout") {
+      restoreArray.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+      index++;
     }
   }
 }
@@ -89,8 +94,19 @@ function clear() {
   ctx.fillStyle = initBgColor;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  restoreArray = [];
+  index = -1;
 }
 
-function undo() {}
+function undo() {
+  if (index <= 0) {
+    clear();
+  } else {
+    index--;
+    restoreArray.pop();
+    ctx.putImageData(restoreArray[index], 0, 0);
+  }
+}
 
 export {};
