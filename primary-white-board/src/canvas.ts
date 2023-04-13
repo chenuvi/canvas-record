@@ -1,3 +1,4 @@
+import FileSaver from "file-saver";
 // init Vars
 let initBgColor = "white";
 let drawWidth = 2;
@@ -109,4 +110,11 @@ function undo() {
   }
 }
 
+const btnSaveAsImg = $("#btn-save-as-img")!;
+btnSaveAsImg.addEventListener("click", saveAsImg);
+function saveAsImg() {
+  canvas.toBlob((blob) => {
+    FileSaver.saveAs(blob, 'board' + Date.now());
+  });
+}
 export {};
