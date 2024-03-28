@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>canvas - 动画</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="550"
+      height="500"
+      style="box-shadow: 0 0 5px #ccc; border-radius: 8px;"
+    >
+      当前浏览器不支持canvas元素，请升级或更换浏览器！
+    </canvas>
+  </body>
+  <script>
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+
+    // ctx.fillStyle = "#ff0000";
+    // // 向x轴和y轴平移200像素
+    // ctx.translate(200, 200);
+    // // 在（0,0）坐标点绘制一个宽：200，高：100的矩形
+    // ctx.fillRect(0,0,200,100)
+
+    // ## 旋转
+    // for (let i = 0; i < 9; i++) {
+    //   ctx.fillStyle = `#${i}${i}${i}`;
+    //   // 旋转弧度设置，角度和弧度的转换公式：1° = Math.PI / 180
+    //   ctx.rotate((i * 2 * Math.PI) / 180);
+    //   ctx.fillRect(0, 0, 200, 100);
+    // }
+
+    // ## 缩放
+    // for (let i = 0; i < 9; i++) {
+    //   ctx.fillStyle = `#${i}${i}${i}`;
+    //   ctx.beginPath();
+    //   ctx.scale(2 / i, 2 / i);
+    //   ctx.arc(250, 250, 50, 0, Math.PI * 2);
+    //   ctx.fill()
+    // }
+
+    // ## 状态的保存和恢复
+    // ctx.fillStyle = "grey";
+    // ctx.fillRect(10, 10, 200, 100);
+    // ctx.save();
+
+    // ctx.fillStyle = "orange";
+    // ctx.fillRect(10, 150, 200, 100);
+
+    // ctx.restore();
+    // ctx.fillRect(10, 300, 200, 200);
+
+    ctx.fillStyle = "#ccc";
+    let num = 0;
+    const [width, height] = [canvas.width, canvas.height];
+    // const timer = setInterval(() => {
+    //   num += 1;
+    //   if (num < 400) {
+    //     ctx.clearRect(0, 0, width, height);
+    //     ctx.fillRect(num, num, 100, 100);
+    //     return;
+    //   }
+    //   clearInterval(timer);
+    // });
+
+    function runner() {
+      num += 1;
+      if (num < 400) {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillRect(0, num, 100, 100);
+      }
+      requestAnimationFrame(runner);
+    }
+    requestAnimationFrame(runner);
+  </script>
+</html>
