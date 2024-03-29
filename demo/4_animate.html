@@ -16,6 +16,7 @@
     </canvas>
   </body>
   <script>
+    /** @type {HTMLCanvasElement} */
     const canvas = document.querySelector("#canvas");
     const ctx = canvas.getContext("2d");
 
@@ -66,14 +67,54 @@
     //   clearInterval(timer);
     // });
 
-    function runner() {
-      num += 1;
-      if (num < 400) {
-        ctx.clearRect(0, 0, width, height);
-        ctx.fillRect(0, num, 100, 100);
-      }
-      requestAnimationFrame(runner);
+    // globalCompositeOperation 属性设置或返回如何将一个源（新的）图像绘制到目标（已有的）的图像上。
+    // 这里主要是为了让飞机压在运行轨迹上
+
+    ctx.globalCompositeOperation = "destination-over";
+    ctx.strokeStyle = "#ccc";
+    const img = new Image();
+    img.src = "./assets/cat.jpg";
+
+    let n = 0;
+    function catRun() {
+      ctx.clearRect(0, 0, width, height);
+      ctx.save();
+      // 把原心移到画布中间
+      ctx.translate(250, 250);
+
+      n += 0.01;
+      ctx.rotate(-n);
+      ctx.translate(0, 200);
+      ctx.drawImage(img, -20, -25, 40, 40);
+
+      // 恢复状态
+      ctx.restore();
+
+      // 飞机运行的轨迹
+      ctx.beginPath();
+      ctx.arc(250, 250, 200, 0, Math.PI * 2, false);
+      ctx.stroke();
+      requestAnimationFrame(catRun);
     }
-    requestAnimationFrame(runner);
+    img.onload = () => {
+      requestAnimationFrame(catRun);
+    };
+
+    // function runner() {
+    //   num += 1;
+    //   if (num < 400) {
+    //     ctx.clearRect(0, 0, width, height);
+    //     ctx.fillRect(num, num, 100, 100);
+    //   }
+    //   requestAnimationFrame(runner);
+    // }
+    // requestAnimationFrame(runner);
+
+    // // 填充颜色
+    // ctx.fillStyle = "orange";
+    // // x轴和y轴都移动了100
+    // ctx.transform(1, Math.PI /20, 0, 1, 0, 0);
+
+    // ctx.fillRect(100, 100, 200, 200);
   </script>
 </html>
