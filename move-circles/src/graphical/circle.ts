@@ -9,6 +9,7 @@ class Circle {
   private dx?: number;
   private dy?: number;
   ctx?: CanvasRenderingContext2D;
+  stokeLineWidth?: number;
   constructor(
     xPos: number,
     yPos: number,
@@ -42,7 +43,8 @@ class Circle {
       ctx.fillText(this.text, this.xPos, this.yPos);
       // ctx.strokeText(this.text, this.xPos, this.yPos);
     }
-    ctx.lineWidth = lineWidth;
+    this.stokeLineWidth = lineWidth;
+    ctx.lineWidth = this.stokeLineWidth;
     ctx.arc(this.xPos, this.yPos, this.radius, 0, Math.PI * 2, false);
     ctx.stroke();
     ctx.closePath();
@@ -50,7 +52,7 @@ class Circle {
 
   update() {
     if (!this.ctx) return;
-    this.drawStoke(this.ctx);
+    this.drawStoke(this.ctx, this.stokeLineWidth);
     if (this.xPos + this.radius > WINDOW_WIDTH || this.xPos - this.radius < 0) {
       this.dx = -this.dx!;
     }
