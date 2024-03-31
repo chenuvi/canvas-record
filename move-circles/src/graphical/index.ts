@@ -1,3 +1,3 @@
 import Circle from "./circle";
-
-export { Circle };
+import Image from "./image";
+export { Circle, Image };
