@@ -1,5 +1,4 @@
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from "../constant";
-let hit_counter = 0;
 class Circle {
   xPos: number;
   yPos: number;
@@ -40,7 +39,7 @@ class Circle {
       ctx.font = "15px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText(String(hit_counter), this.xPos, this.yPos);
+      ctx.fillText(this.text, this.xPos, this.yPos);
       // ctx.strokeText(this.text, this.xPos, this.yPos);
     }
     ctx.lineWidth = lineWidth;
@@ -55,14 +54,12 @@ class Circle {
     this.drawStoke(this.ctx);
     if (this.xPos + this.radius > WINDOW_WIDTH || this.xPos - this.radius < 0) {
       this.dx = -this.dx!;
-      hit_counter++;
     }
     if (
       this.yPos + this.radius > WINDOW_HEIGHT ||
       this.yPos - this.radius < 0
     ) {
       this.dy = -this.dy!;
-      hit_counter++;
     }
     this.xPos += this.dx!;
     this.yPos += this.dy!;
