@@ -1,5 +1,6 @@
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from "../constant";
-import { getRandomColor } from "../utils";
+import { getDistance } from "../utils";
+// import { getRandomColor } from "../utils";
 class Circle {
   xPos: number;
   yPos: number;
@@ -51,6 +52,17 @@ class Circle {
     ctx.closePath();
   }
 
+  drawFill(ctx: CanvasRenderingContext2D, lineWidth = 5) {
+    ctx.beginPath();
+    ctx.arc(this.xPos, this.yPos, this.radius, 0, Math.PI * 2, false);
+    ctx.strokeStyle = "grey";
+    ctx.lineWidth = lineWidth;
+    ctx.fillStyle = this.color;
+    ctx.fill();
+    // ctx.stroke();
+    ctx.closePath();
+  }
+
   update() {
     if (!this.ctx) return;
     this.drawStoke(this.ctx, this.stokeLineWidth);
@@ -67,6 +79,19 @@ class Circle {
     }
     this.xPos += this.dx!;
     this.yPos += this.dy!;
+  }
+
+  isClicked(xMouse: number, yMouse: number): boolean {
+    const distance = getDistance([xMouse, yMouse], [this.xPos, this.yPos]);
+    if (distance <= this.radius) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  changeColor(color: string) {
+    this.color = color;
   }
 }
 
