@@ -11,4 +11,12 @@ const getDistance = (
 
   return res;
 };
-export { $, getDistance };
+
+function getRandomColor(): string {
+  const hue = Math.floor(Math.random() * 360); // 色相范围：0到359度
+  const saturation = Math.floor(Math.random() * 100) + "%"; // 饱和度范围：0%到100%
+  const lightness = Math.floor(Math.random() * 100) + "%"; // 亮度范围：0%到100%
+
+  return `hsl(${hue}, ${saturation}, ${lightness})`;
+}
+export { $, getDistance, getRandomColor };

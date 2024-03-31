@@ -1,4 +1,5 @@
 import { WINDOW_HEIGHT, WINDOW_WIDTH } from "../constant";
+import { getRandomColor } from "../utils";
 class Circle {
   xPos: number;
   yPos: number;
@@ -55,12 +56,14 @@ class Circle {
     this.drawStoke(this.ctx, this.stokeLineWidth);
     if (this.xPos + this.radius > WINDOW_WIDTH || this.xPos - this.radius < 0) {
       this.dx = -this.dx!;
+      // this.color = getRandomColor();
     }
     if (
       this.yPos + this.radius > WINDOW_HEIGHT ||
       this.yPos - this.radius < 0
     ) {
       this.dy = -this.dy!;
+      // this.color = getRandomColor();
     }
     this.xPos += this.dx!;
     this.yPos += this.dy!;
