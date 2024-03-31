@@ -14,7 +14,7 @@ function circleRun() {
   circle1.update();
   circle2.update();
   if (
-    getDistance(circle1.xPos, circle1.yPos, circle2.xPos, circle2.yPos) <=
+    getDistance([circle1.xPos, circle1.yPos], [circle2.xPos, circle2.yPos]) <=
     circle2.radius + circle1.radius
   ) {
     circle2.color = "green";
