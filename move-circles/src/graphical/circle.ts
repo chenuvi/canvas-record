@@ -25,7 +25,7 @@ class Circle {
     this.text = text;
     this.speed = speed;
 
-    if (this.speed) {
+    if (this.speed !== undefined) {
       this.dx = 1 * this.speed;
       this.dy = 1 * this.speed;
     }
@@ -50,7 +50,6 @@ class Circle {
 
   update() {
     if (!this.ctx) return;
-    this.ctx.clearRect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     this.drawStoke(this.ctx);
     if (this.xPos + this.radius > WINDOW_WIDTH || this.xPos - this.radius < 0) {
       this.dx = -this.dx!;
